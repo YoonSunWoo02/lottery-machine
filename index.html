@@ -13,6 +13,9 @@
     <meta property="og:description" content="클릭 한 번으로 행운의 숫자를 받아보세요. 과거 1등 번호도 확인할 수 있습니다.">
     <meta property="og:type" content="website">
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8606694581555602"
+     crossorigin="anonymous"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -154,7 +157,7 @@
     </footer>
 
     <script>
-        // 1. 과거 실제 1등 당첨 데이터 모음 (2023~2024년 주요 회차)
+        // 1. 과거 실제 1등 당첨 데이터 모음
         const pastWinners = [
             { round: 1105, date: '2024.02.03', nums: [6, 16, 34, 37, 39, 40], bonus: 11 },
             { round: 1104, date: '2024.01.27', nums: [1, 7, 21, 30, 35, 38], bonus: 2 },
@@ -177,15 +180,12 @@
 
         // 2. 랜덤한 과거 당첨 번호 보여주기 함수
         function showRandomPastWinner() {
-            // 배열에서 랜덤으로 하나 뽑기
             const randomIndex = Math.floor(Math.random() * pastWinners.length);
             const data = pastWinners[randomIndex];
 
-            // 텍스트 업데이트
             const infoText = document.getElementById('round-info');
             infoText.innerHTML = `제 <strong class="text-slate-800">${data.round}회</strong> (${data.date})`;
 
-            // 공 그리기
             renderWinBalls(data.nums, data.bonus);
         }
 
@@ -194,7 +194,6 @@
             const container = document.getElementById('win-container');
             container.innerHTML = '';
 
-            // 일반 번호
             numbers.forEach(num => {
                 const colorClass = getBallColor(num);
                 container.innerHTML += `
@@ -204,10 +203,8 @@
                 `;
             });
 
-            // 플러스 기호
             container.innerHTML += `<span class="flex items-center text-slate-400 text-lg mx-1">+</span>`;
 
-            // 보너스 번호
             const bonusColor = getBallColor(bonus);
             container.innerHTML += `
                 <div class="win-ball w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-sm md:text-base font-bold text-white ${bonusColor}">
@@ -252,7 +249,7 @@
             }, 500);
         }
 
-        // 생성된 번호 그리기 (테두리 있는 스타일)
+        // 생성된 번호 그리기
         function renderBallsSimple(numbers) {
             const container = document.getElementById('ball-container');
             container.innerHTML = '';
